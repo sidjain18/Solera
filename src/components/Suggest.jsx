@@ -2,6 +2,7 @@ import * as React from 'react';
 import fetchJsonp from 'fetch-jsonp';
 import styled from 'styled-components';
 
+
 import { StateProvider, DebouncePropagator, AsyncResolver } from 'reenhance-components';
 
 
@@ -92,7 +93,45 @@ const asyncFetch =
       );
       
 
+  // const SEARCH_URI = 'http://localhost:5000/api/data_merged/get_medicines';
 
-
-
-
+  //     export const AsyncExample = () => {
+  //       const [isLoading, setIsLoading] = useState(false);
+  //       const [options, setOptions] = useState([]);
+      
+  //       const handleSearch = useCallback((query) => {
+  //         setIsLoading(true);
+      
+  //         fetch(`${SEARCH_URI}?q=${query}`)
+  //           .then((resp) => resp.json())
+  //           .then(({ items }) => {
+  //             const options = items.map((i) => ({
+  //               medName: i.medName,
+  //               salt: i.salt,
+  //               url: i.url,
+  //             }));
+      
+  //             setOptions(options);
+  //             setIsLoading(false);
+  //           });
+  //       });
+      
+  //       return (
+  //         <AsyncTypeahead
+  //           id="async-example"
+  //           isLoading={isLoading}
+  //           labelKey="medName"
+  //           minLength={3}
+  //           onSearch={handleSearch}
+  //           options={options}
+  //           placeholder="Type a drug name (like Atorvastin,Sildenafil,etc)"
+  //           renderMenuItemChildren={(option, props) => (
+  //             <div>
+  //               <span>{option.medName}</span>
+  //             </div>
+  //           )}
+  //         />
+  //       );
+  //     };
+    
+ 
