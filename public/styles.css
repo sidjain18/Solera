@@ -25,15 +25,19 @@
 }
 
 input{
+  margin-top: 4%;
+  margin-left: 20%;
+  border: 1px solid #999;
+  padding: 0.5rem;
   height: 40px;
-  width: 60%;
+  width: 50%;
 }
 
 .search{
   color: white;
   background-color: blue;
   height: 40px;
-  width: 30%;
+  width: 15%;
 }
 
 html {
@@ -130,3 +134,37 @@ tbody tr:hover {
   background-color: #eee;
 }
 
+
+.no-suggestions {
+  color: black;
+  padding: 0.5rem;
+  margin-left: 20% ;
+}
+
+.suggestions {
+  border: 1px solid #999;
+  border-top-width: 0;
+  list-style: none;
+  margin-top: 0;
+  margin-left: 20% ;
+  max-height: 143px;
+  overflow-y: auto;
+  padding-left: 0;
+  width: 50%;
+}
+
+.suggestions li {
+  padding: 0.5rem;
+}
+
+.suggestion-active,
+.suggestions li:hover {
+  background-color: rgb(3, 3, 240);
+  color: white;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.suggestions li:not(:last-of-type) {
+  border-bottom: 1px solid #999;
+}

@@ -1,137 +1,64 @@
-import * as React from 'react';
-import fetchJsonp from 'fetch-jsonp';
-import styled from 'styled-components';
+import React from "react";
+import { render } from "react-dom";
+
+import Autocomplete from "./Autocomplete";
 
 
-import { StateProvider, DebouncePropagator, AsyncResolver } from 'reenhance-components';
-
-
-const Dropdown = styled.div`
-  position: relative;
-  font: normal .8em sans-serif;
-`;
-
-const Input = styled.input`
-  margin: 0;
-  border: 1px solid silver;
-  border-radius: 3px;
-  font-family: inherit;
-  font-size: 100%;
-  -webkit-appearance: searchfield;
-`;
-
-const SuggestsUl = styled.ul`
-  position: absolute;
-  z-index: 1;
-  top: 5px;
-  padding: 0;
-  border: 1px solid silver;
-  background-color: white;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  list-style: none;
-`;
-
-const SuggestsLi = styled.li`
-  padding: 0 10px;
-  cursor: pointer;
-  &:hover {
-    background-color:silver;
-  }
-`;
-
-
-const queryToUrl =
-  query => `http://localhost:5000/api/data_merged/get_medicines?medName=${query}`;
-
-const asyncFetch =
-  ({ query }) =>
-    fetchJsonp(queryToUrl(query))
-      .then(res => res.json());
-
-      const SuggestAsyncResolver = AsyncResolver('query', []);
-
-      const Suggests = ({ query }) => (
-        <SuggestAsyncResolver query={query} subject={asyncFetch}>
-          {props => (
-            <ul>
-              {props[1] && props[1].length > 0 ? props[1].map(str => (
-                <li key={str}>{str}</li>
-              )) : <li>No results</li>}
-            </ul>
-          )}
-        </SuggestAsyncResolver>
-      );
-
-      const InputState = StateProvider('');
-      const SuggestDebounce = DebouncePropagator({ query: '' });
-      
-      export const SuggestedInput = () => (
-        <div className="inputsearch">
-        <InputState>
-          {({ state: query, setState: setQuery }) => (
-            <div>
-              <div class="inner-addon left-addon">
-              <i class="glyphicon glyphicon-user"></i>
-              <input type="search" placeholder="Type a drug name (like Atorvastin,Sildenafil,etc)" value={query} onChange={e => setQuery(e.target.value)} />
-              <button className="search" type="submit">FIND THE LOWEST PRICES</button>
-              </div>
-              <SuggestDebounce
-                time={200}
-                query={query}
-              >
-                {({ query, state }) => (
-                  <div>
-                    {query && <Suggests query={query}/>}
-                  </div>
-                )}
-              </SuggestDebounce>
-            </div>
-          )}
-        </InputState>
-       
-        </div>
-      );
-      
-
-  // const SEARCH_URI = 'http://localhost:5000/api/data_merged/get_medicines';
-
-  //     export const AsyncExample = () => {
-  //       const [isLoading, setIsLoading] = useState(false);
-  //       const [options, setOptions] = useState([]);
-      
-  //       const handleSearch = useCallback((query) => {
-  //         setIsLoading(true);
-      
-  //         fetch(`${SEARCH_URI}?q=${query}`)
-  //           .then((resp) => resp.json())
-  //           .then(({ items }) => {
-  //             const options = items.map((i) => ({
-  //               medName: i.medName,
-  //               salt: i.salt,
-  //               url: i.url,
-  //             }));
-      
-  //             setOptions(options);
-  //             setIsLoading(false);
-  //           });
-  //       });
-      
-  //       return (
-  //         <AsyncTypeahead
-  //           id="async-example"
-  //           isLoading={isLoading}
-  //           labelKey="medName"
-  //           minLength={3}
-  //           onSearch={handleSearch}
-  //           options={options}
-  //           placeholder="Type a drug name (like Atorvastin,Sildenafil,etc)"
-  //           renderMenuItemChildren={(option, props) => (
-  //             <div>
-  //               <span>{option.medName}</span>
-  //             </div>
-  //           )}
-  //         />
-  //       );
-  //     };
-    
- 
+function SuggestedInput() {
+  return (
+    <div>
+      <Autocomplete
+        suggestions={[
+          "Acnesol Gel",
+          "Ambrodil Syrup",
+          "Ascoril LS Syrup",
+          "Azee 500 Tablet",
+          "Ambrodil-S Syrup",
+          "Acnestar Gel",
+          "Axcer  90mg Tablet",
+          "Asthakind-DX Syrup Sugar Free",
+          "Acitrom 2 Tablet",
+          "Amaryl 1mg Tablet",
+          "Acivir Cream",
+          "Ascabiol Emulsion",
+          "Aerocort Inhaler",
+          "Acnesol A Nano Gel",
+          "Alivher Tablet",
+          "Atorva 20 Tablet",
+          "Cymax O 200mg/200mg Tablet",
+          "Doberol Capsule",
+          "Diclotal Forte  50 mg/325 mg Tablet",
+          "Dorikem 500mg Kit",
+          "Dermashine Lotion",
+          "Z-Cyp Syrup",
+          "Panseal D Capsule",
+          "Pancyte-D 30mg/40mg Capsule",
+          "Merotar 250mg Injection",
+          "Metalgin Syrup",
+          "Menflox LB 200mg Tablet",
+          "Ofloxa T 200mg/600mg Capsule",
+          "Omisen 20mg Capsule",
+          "Oflovel 400mg Tablet",
+          "Oprucet LM 5mg/10mg Tablet",
+          "Ofrin 50mg Dry Syrup",
+          "Rexipra FX 10 Tablet",
+          "Sancoril Expectorant",
+          "Sunibutol 600mg Tablet",
+          "Speedon-P 100mg/500mg Tablet",
+          "Oftak 200 Tablet",
+          "Lamicet M 5mg/10mg Tablet",
+          "Loxzol Nasal Drops",
+          "Fensec 20mg Capsule",
+          "Eteez 0.25mg Tablet",
+          "Cefu 750mg Injection",
+          "Cortis-TR Injection",
+          "Cyproline Syrup",
+          "Fepit 150mg Tablet",
+          "Flumax 200mg Tablet",
+          "Finbrom Eye Drop",
+        ]}
+      />
+    </div>
+  );
+}
+export default SuggestedInput;
